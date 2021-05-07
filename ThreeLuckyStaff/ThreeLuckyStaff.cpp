@@ -27,7 +27,7 @@ public:
 // hàm nhập thông tin nhân viên sửa ống nước
 void NhanVienSuaOngNuoc::Nhap()
 {
-	fflush(stdin);
+	cin.ignore;
 	cout << endl << " Nhap ho ten: ";
 	getline(cin, hoten);
 
