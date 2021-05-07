@@ -27,11 +27,10 @@ public:
 // hàm nhập thông tin nhân viên sửa ống nước
 void NhanVienSuaOngNuoc::Nhap()
 {
-	cin.ignore;
+	cin.ignore();
 	cout << endl << " Nhap ho ten: ";
 	getline(cin, hoten);
 
-	fflush(stdin);
 	cout << endl << " Nhap dia chi: ";
 	getline(cin, dia_chi);
 
@@ -50,7 +49,7 @@ void NhanVienSuaOngNuoc::Nhap()
 	cout << endl << " Nhap can nang(kg):";
 	cin >> can_nang;
 
-	cout << endl << "Nhap so gio lam viec: ";
+	cout << endl << " Nhap so gio lam viec: ";
 	cin >> so_h_sua;
 
 }
@@ -145,7 +144,7 @@ void NhanVienGiaoHang::Nhap()
 	cout << endl << " Nhap can nang(kg):";
 	cin >> can_nang;
 
-	cout << endl << "Nhap so hang da giao: ";
+	cout << endl << " Nhap so hang da giao: ";
 	cin >> so_hang_giao;
 }
 
@@ -239,7 +238,7 @@ void NhanVienXeOmCongNghe::Nhap()
 	cout << endl << " Nhap can nang(kg):";
 	cin >> can_nang;
 
-	cout << endl << "Nhap so km da chay: ";
+	cout << endl << " Nhap so km da chay: ";
 	cin >> so_km;
 }
 
@@ -284,33 +283,106 @@ NhanVienXeOmCongNghe::~NhanVienXeOmCongNghe()
 
 }
 
+// thiết kế menu xử lý
+void Menu(NhanVienSuaOngNuoc ds_nv_suaongnuoc[], NhanVienGiaoHang ds_nv_giaohang[], NhanVienXeOmCongNghe ds_nv_xeomcn[], int n, int m, int l)
+{
+	int luachon;
+	while(true)
+	{
+		system("cls");
+		cout << endl << "=============CHUONG TRINH QUAN LY=============";
+		cout << endl << "1. NHAP THONG TIN NHAN VIEN SUA ONG NUOC";
+		cout << endl << "2. NHAP THONG TIN NHAN VIEN GIAO HANG";
+		cout << endl << "3. NHAP THONG TIN NHAN VIEN XE OM CONG NGHE";
+		cout << endl << "4. XUAT DANH SACH THONG TIN NHAN VIEN SUA ONG NUOC";
+		cout << endl << "5. XUAT DANH SACH THONG TIN NHAN VIEN GIAO HANG";
+		cout << endl << "6. XUAT DANH SACH THONG TIN NHAN VIEN XE OM CONG NGHE";
+		cout << endl << "0. KET THUC";
+		cout << endl << "=====================ENDL=====================";
+		cout << endl << "NHAP LUA CHON: ";
+		cin >> luachon;
+		if (luachon<0||luachon>6)
+		{
+			cout << "LUA CHON KHONG TON TAI, NHAP LAI: ";
+		}
+		else if (luachon == 1)
+		{
+			NhanVienSuaOngNuoc nv_suaongnuoc;
+			cout << endl << "NHAP THONG TIN NHAN VIEN SUA ONG NUOC";
+			nv_suaongnuoc.Nhap();
+			// thêm đối tượng giá trị vào danh sách
+			ds_nv_suaongnuoc[n] = nv_suaongnuoc;
+			n++;
+		}
+		else if (luachon == 2)
+		{
+			NhanVienGiaoHang nv_giaohang;
+			cout << endl << "NHAP THONG TIN NHAN VIEN GIAO HANG";
+			nv_giaohang.Nhap();
+			// thêm đối tượng giá trị vào danh sách
+			ds_nv_giaohang[m] = nv_giaohang;
+			m++;
+		}
+		else if (luachon == 3)
+		{
+			NhanVienXeOmCongNghe nv_xeomcn;
+			cout << endl << "NHAP THONG TIN NHAN VIEN XE OM CONG NGHE";
+			nv_xeomcn.Nhap();
+			// thêm đối tượng giá trị vào danh sách
+			ds_nv_xeomcn[l] = nv_xeomcn;
+			l++;
+		}
+		else if (luachon == 4)
+		{
+			cout << endl << "DANH SACH THONG TIN NHAN VIEN SUA ONG NUOC";
+			for (int i = 0; i < n; i++)
+			{
+				cout << endl << "THONG TIN NHAN VIEN SUA ONG NUOC THU " << i + 1 << ": ";
+				ds_nv_suaongnuoc[i].Xuat();
+			}
+			system("pause");
+		}
+		else if (luachon == 5)
+		{
+			cout << endl << "DANH SACH THONG TIN NHAN VIEN GIAO HANG";
+			for (int i = 0; i < m; i++)
+			{
+				cout << endl << "THONG TIN NHAN VIEN GIAO HANG THU " << i + 1 << ": ";
+				ds_nv_giaohang[i].Xuat();
+			}
+			system("pause");
+		}
+		else if (luachon == 6)
+		{
+			cout << endl << "DANH SACH THONG TIN NHAN VIEN XE OM CONG NGHE";
+			for (int i = 0; i < l; i++)
+			{
+				cout << endl << "THONG TIN NHAN VIEN XE OM CONG NGHE THU " << i + 1 << ": ";
+				ds_nv_xeomcn[i].Xuat();
+			}
+			system("pause");
+		}
+		else if (luachon == 0)
+		{
+			break;
+		}
+		
+	}
+}
 int main()
 {
-	// tạo ra 3 đối tượng giá trị ay yo what's up
-	NhanVienSuaOngNuoc nv_suaongnuoc;
-	NhanVienGiaoHang nv_giaohang;
-	NhanVienXeOmCongNghe nv_xeomcn;
+	// tạo ra 3 đối tượng giá trị
+	// Mảng 1 chiều để quản lý các nhân viên
+	NhanVienSuaOngNuoc ds_nv_suaongnuoc[100];
+	NhanVienGiaoHang ds_nv_giaohang[100];
+	NhanVienXeOmCongNghe ds_nv_xeomcn[100];
 
-	cout << endl << " NHAP THONG TIN NHAN VIEN SUA ONG NUOC ";
-	nv_suaongnuoc.Nhap();
+	int n, m, l;
+	n = 0; //nhân viên sủa ống nước
+	m = 0; //nhân viên giao hàng
+	l = 0; //nhân viên xe ôm
 
-	cout << endl << " NHAP THONG TIN NHAN VIEN GIAO HANG ";
-	nv_giaohang.Nhap();
-
-	cout << endl << " NHAP THONG TIN NHAN VIEN XE OM CONG NGHE ";
-	nv_xeomcn.Nhap();
-
-	cout << endl << " THONG TIN NHAN VIEN SUA ONG NUOC ";
-	nv_suaongnuoc.Xuat();
-	cout << endl << " LUONG: " << nv_suaongnuoc.Tinh_Tien_Luong();
-
-	cout << endl << " THONG TIN NHAN VIEN GIAO HANG ";
-	nv_giaohang.Xuat();
-	cout << endl << " LUONG: " << nv_giaohang.Tinh_Tien_Luong();
-
-	cout << endl << " THONG TIN NHAN VIEN XE OM CONG NGHE ";
-	nv_xeomcn.Xuat();
-	cout << endl << " LUONG:" << nv_xeomcn.Tinh_Tien_Luong();
+	Menu(ds_nv_suaongnuoc, ds_nv_giaohang, ds_nv_xeomcn, n, m, l);
 
 	system("pause");
 	return 0;
