@@ -286,7 +286,7 @@ NhanVienXeOmCongNghe::~NhanVienXeOmCongNghe()
 
 int main()
 {
-	// tạo ra 3 đối tượng giá trị 
+	// tạo ra 3 đối tượng giá trị ay yo what's up
 	NhanVienSuaOngNuoc nv_suaongnuoc;
 	NhanVienGiaoHang nv_giaohang;
 	NhanVienXeOmCongNghe nv_xeomcn;
