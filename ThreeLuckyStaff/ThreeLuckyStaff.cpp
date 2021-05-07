@@ -53,7 +53,6 @@ void NhanVienSuaOngNuoc::Nhap()
 	cout << endl << "Nhap so gio lam viec: ";
 	cin >> so_h_sua;
 
-	fflush(stdin);
 }
 
 // hàm xuất thông tin nhân viên sửa ống nước
@@ -64,20 +63,17 @@ void NhanVienSuaOngNuoc::Xuat()
 	cout << endl << " Gioi tinh: ";
 	if (gioi_tinh == 1)
 	{
-		cout << endl << " Nam";
+		cout << " Nam";
 	}
 	if (gioi_tinh == 2)
 	{
-		cout << endl << " Nu";
+		cout << " Nu";
 	}
 	if (gioi_tinh == 3)
 	{
-		cout << endl << " Khac";
+		cout << " Khac";
 	}
-	else
-	{
-		cout << endl << " DCMM";
-	}
+
 	cout << endl << " Dia chi: " << dia_chi;
 	cout << endl << " So dien thoai: " << sdt;
 	cout << endl << " Chieu cao: " << chieu_cao;
@@ -126,6 +122,7 @@ public:
 void NhanVienGiaoHang::Nhap()
 {
 	fflush(stdin);
+	cin.ignore();
 	cout << endl << " Nhap ho ten: ";
 	getline(cin, hoten);
 
@@ -157,7 +154,20 @@ void NhanVienGiaoHang::Xuat()
 {
 	cout << endl << " Ho ten: " << hoten;
 	cout << endl << " Tuoi: " << tuoi;
-	cout << endl << " Gioi tinh: " << gioi_tinh;
+	cout << endl << " Gioi tinh: ";
+	if (gioi_tinh == 1)
+	{
+		cout << " Nam";
+	}
+	if (gioi_tinh == 2)
+	{
+		cout << " Nu";
+	}
+	if (gioi_tinh == 3)
+	{
+		cout << " Khac";
+	}
+
 	cout << endl << " Dia chi: " << dia_chi;
 	cout << endl << " So dien thoai: " << sdt;
 	cout << endl << " Chieu cao: " << chieu_cao;
@@ -206,6 +216,7 @@ public:
 void NhanVienXeOmCongNghe::Nhap()
 {
 	fflush(stdin);
+	cin.ignore();
 	cout << endl << " Nhap ho ten: ";
 	getline(cin, hoten);
 
@@ -237,7 +248,20 @@ void NhanVienXeOmCongNghe::Xuat()
 {
 	cout << endl << " Ho ten: " << hoten;
 	cout << endl << " Tuoi: " << tuoi;
-	cout << endl << " Gioi tinh: " << gioi_tinh;
+	cout << endl << " Gioi tinh: ";
+	if (gioi_tinh == 1)
+	{
+		cout << " Nam";
+	}
+	if (gioi_tinh == 2)
+	{
+		cout << " Nu";
+	}
+	if (gioi_tinh == 3)
+	{
+		cout << " Khac";
+	}
+	
 	cout << endl << " Dia chi: " << dia_chi;
 	cout << endl << " So dien thoai: " << sdt;
 	cout << endl << " Chieu cao: " << chieu_cao;
@@ -270,23 +294,11 @@ int main()
 	cout << endl << " NHAP THONG TIN NHAN VIEN SUA ONG NUOC ";
 	nv_suaongnuoc.Nhap();
 
-	cout << endl << " THONG TIN NHAN VIEN SUA ONG NUOC ";
-	nv_suaongnuoc.Xuat();
-	cout << endl << " LUONG: " << nv_suaongnuoc.Tinh_Tien_Luong();
-
 	cout << endl << " NHAP THONG TIN NHAN VIEN GIAO HANG ";
 	nv_giaohang.Nhap();
 
-	cout << endl << " THONG TIN NHAN VIEN GIAO HANG ";
-	nv_giaohang.Xuat();
-	cout << endl << " LUONG: " << nv_giaohang.Tinh_Tien_Luong();
-
 	cout << endl << " NHAP THONG TIN NHAN VIEN XE OM CONG NGHE ";
 	nv_xeomcn.Nhap();
-
-	cout << endl << " THONG TIN NHAN VIEN XE OM CONG NGHE ";
-	nv_xeomcn.Xuat();
-	cout << endl << " LUONG:" << nv_xeomcn.Tinh_Tien_Luong();
 
 	cout << endl << " THONG TIN NHAN VIEN SUA ONG NUOC ";
 	nv_suaongnuoc.Xuat();
