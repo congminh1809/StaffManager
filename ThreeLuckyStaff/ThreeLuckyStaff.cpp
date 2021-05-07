@@ -18,7 +18,7 @@ public:
 
 	void Nhap();
 	void Xuat();
-	float Tinh_Tien_Luong();
+	double Tinh_Tien_Luong();
 
 	NhanVienSuaOngNuoc();
 	~NhanVienSuaOngNuoc();
@@ -77,12 +77,14 @@ void NhanVienSuaOngNuoc::Xuat()
 	cout << endl << " So dien thoai: " << sdt;
 	cout << endl << " Chieu cao: " << chieu_cao;
 	cout << endl << " Can nang: " << can_nang;
+	cout << endl << " So gio sua: " << so_h_sua;
+	cout << endl << " Luong: " << (size_t)Tinh_Tien_Luong() << endl;
 }
 
 // hàm tính tiền lương nhân viên sửa ống nước
-float NhanVienSuaOngNuoc::Tinh_Tien_Luong()
+double NhanVienSuaOngNuoc::Tinh_Tien_Luong()
 {
-	return so_h_sua * 50000;
+	return (size_t)so_h_sua * 50000;
 }
 // hàm tạo
 NhanVienSuaOngNuoc::NhanVienSuaOngNuoc()
@@ -94,6 +96,9 @@ NhanVienSuaOngNuoc::~NhanVienSuaOngNuoc()
 {
 
 }
+
+
+
 
 /* ======= KHAI BÁO CẤU TRÚC LỚP NHÂN VIÊN GIAO HÀNG =======*/
 class NhanVienGiaoHang
@@ -111,7 +116,7 @@ public:
 
 	void Nhap();
 	void Xuat();
-	float Tinh_Tien_Luong();
+	double Tinh_Tien_Luong();
 
 	NhanVienGiaoHang();
 	~NhanVienGiaoHang();
@@ -171,12 +176,15 @@ void NhanVienGiaoHang::Xuat()
 	cout << endl << " So dien thoai: " << sdt;
 	cout << endl << " Chieu cao: " << chieu_cao;
 	cout << endl << " Can nang: " << can_nang;
+	cout << endl << " So hang da giao: " << so_hang_giao;
+	cout << endl << " Luong: " << (size_t)Tinh_Tien_Luong() << endl;
+
 }
 
 // hàm tính tiền lương nhân viên giao hàng
-float NhanVienGiaoHang::Tinh_Tien_Luong()
+double NhanVienGiaoHang::Tinh_Tien_Luong()
 {
-	return so_hang_giao * 33500;
+	return (size_t)so_hang_giao * 33500;
 }
 // hàm tạo
 NhanVienGiaoHang::NhanVienGiaoHang()
@@ -188,6 +196,9 @@ NhanVienGiaoHang::~NhanVienGiaoHang()
 {
 
 }
+
+
+
 
 /* ======= KHAI BÁO CẤU TRÚC LỚP NHÂN VIÊN XE ÔM 4.0 =======*/
 class NhanVienXeOmCongNghe
@@ -205,7 +216,7 @@ public:
 
 	void Nhap();
 	void Xuat();
-	float Tinh_Tien_Luong();
+	double Tinh_Tien_Luong();
 
 	NhanVienXeOmCongNghe();
 	~NhanVienXeOmCongNghe();
@@ -265,12 +276,14 @@ void NhanVienXeOmCongNghe::Xuat()
 	cout << endl << " So dien thoai: " << sdt;
 	cout << endl << " Chieu cao: " << chieu_cao;
 	cout << endl << " Can nang: " << can_nang;
+	cout << endl << " So Km đa chay: " << so_km;
+	cout << endl << " Luong: " << (size_t)Tinh_Tien_Luong() << endl;
 }
 
 // hàm tính tiền lương nhân viên xe ôm
-float NhanVienXeOmCongNghe::Tinh_Tien_Luong()
+double NhanVienXeOmCongNghe::Tinh_Tien_Luong()
 {
-	return so_km * 10000;
+	return (size_t)so_km * 10000;
 }
 // hàm tạo
 NhanVienXeOmCongNghe::NhanVienXeOmCongNghe()
@@ -281,6 +294,41 @@ NhanVienXeOmCongNghe::NhanVienXeOmCongNghe()
 NhanVienXeOmCongNghe::~NhanVienXeOmCongNghe()
 {
 
+}
+
+
+
+// hàm tính tổng tiền lương của các nhân viên giao hàng
+double TongTienLuongNVGH(NhanVienGiaoHang ds[], int m)
+{
+	double sum = 0;
+	for (int i = 0; i < m; i++)
+	{
+		sum += ds[i].Tinh_Tien_Luong();
+	}
+	return sum;
+}
+
+// hàm tính tổng tiền lương của các nhân viên sửa ống nước
+double TongTienLuongNVSON(NhanVienSuaOngNuoc ds[], int n)
+{
+	double sum = 0;
+	for (int i = 0; i < n; i++)
+	{
+		sum += ds[i].Tinh_Tien_Luong();
+	}
+	return (size_t)sum;
+}
+
+// hàm tính tổng tiền lương của các nhân viên xe ôm
+double TongTienLuongNVXOCN(NhanVienXeOmCongNghe ds[], int l)
+{
+	double sum = 0;
+	for (int i = 0; i < l; i++)
+	{
+		sum += ds[i].Tinh_Tien_Luong();
+	}
+	return (size_t)sum;
 }
 
 // thiết kế menu xử lý
@@ -297,11 +345,12 @@ void Menu(NhanVienSuaOngNuoc ds_nv_suaongnuoc[], NhanVienGiaoHang ds_nv_giaohang
 		cout << endl << "4. XUAT DANH SACH THONG TIN NHAN VIEN SUA ONG NUOC";
 		cout << endl << "5. XUAT DANH SACH THONG TIN NHAN VIEN GIAO HANG";
 		cout << endl << "6. XUAT DANH SACH THONG TIN NHAN VIEN XE OM CONG NGHE";
+		cout << endl << "7. TONG TIEN LUONG CUA 3 LOAI NHAN VIEN";
 		cout << endl << "0. KET THUC";
 		cout << endl << "=====================ENDL=====================";
 		cout << endl << "NHAP LUA CHON: ";
 		cin >> luachon;
-		if (luachon<0||luachon>6)
+		if (luachon<0||luachon>7)
 		{
 			cout << "LUA CHON KHONG TON TAI, NHAP LAI: ";
 		}
@@ -340,6 +389,7 @@ void Menu(NhanVienSuaOngNuoc ds_nv_suaongnuoc[], NhanVienGiaoHang ds_nv_giaohang
 				cout << endl << "THONG TIN NHAN VIEN SUA ONG NUOC THU " << i + 1 << ": ";
 				ds_nv_suaongnuoc[i].Xuat();
 			}
+			cout << endl << "TONG TIEN LUONG: " << (size_t)TongTienLuongNVSON(ds_nv_suaongnuoc, n);
 			system("pause");
 		}
 		else if (luachon == 5)
@@ -350,6 +400,7 @@ void Menu(NhanVienSuaOngNuoc ds_nv_suaongnuoc[], NhanVienGiaoHang ds_nv_giaohang
 				cout << endl << "THONG TIN NHAN VIEN GIAO HANG THU " << i + 1 << ": ";
 				ds_nv_giaohang[i].Xuat();
 			}
+			cout << endl << "TONG TIEN LUONG: " << (size_t)TongTienLuongNVGH(ds_nv_giaohang, m);
 			system("pause");
 		}
 		else if (luachon == 6)
@@ -360,6 +411,14 @@ void Menu(NhanVienSuaOngNuoc ds_nv_suaongnuoc[], NhanVienGiaoHang ds_nv_giaohang
 				cout << endl << "THONG TIN NHAN VIEN XE OM CONG NGHE THU " << i + 1 << ": ";
 				ds_nv_xeomcn[i].Xuat();
 			}
+			cout << endl << "TONG TIEN LUONG: " << (size_t)TongTienLuongNVXOCN(ds_nv_xeomcn, l);
+			system("pause");
+		}
+		else if (luachon == 7)
+		{
+			double a = (size_t)(TongTienLuongNVGH(ds_nv_giaohang, m) + TongTienLuongNVSON(ds_nv_suaongnuoc, n) + TongTienLuongNVXOCN(ds_nv_xeomcn, l));
+			cout << endl << "Tong tien cong ty can tra hang thang: " << (size_t)a;
+			cout << endl;
 			system("pause");
 		}
 		else if (luachon == 0)
@@ -369,6 +428,9 @@ void Menu(NhanVienSuaOngNuoc ds_nv_suaongnuoc[], NhanVienGiaoHang ds_nv_giaohang
 		
 	}
 }
+
+
+
 int main()
 {
 	// tạo ra 3 đối tượng giá trị
