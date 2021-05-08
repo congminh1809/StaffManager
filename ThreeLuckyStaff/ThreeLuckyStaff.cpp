@@ -331,6 +331,76 @@ double TongTienLuongNVXOCN(NhanVienXeOmCongNghe ds[], int l)
 	return (size_t)sum;
 }
 
+
+
+// hàm hoán vị 2 đối tượng nv Sửa ống nước
+void Hoan_Vi_Sua_Ong_Nuoc(NhanVienSuaOngNuoc &x, NhanVienSuaOngNuoc &y)
+{
+	NhanVienSuaOngNuoc temp = x;
+	x = y;
+	y = temp;
+}
+// hàm hoán vị 2 đối tượng nv Giao hàng
+void Hoan_Vi_Giao_Hang(NhanVienGiaoHang &x, NhanVienGiaoHang &y)
+{
+	NhanVienGiaoHang temp = x;
+	x = y;
+	y = temp;
+}
+// hàm hoán vị 2 đối tượng nv Xe ôm công nghệ
+void Hoan_Vi_Xe_Om_CN(NhanVienXeOmCongNghe &x, NhanVienXeOmCongNghe &y)
+{
+	NhanVienXeOmCongNghe temp = x;
+	x = y;
+	y = temp;
+}
+
+
+// hàm sắp xếp danh sách Nhân viên sủa ống nước giảm dần theo lương
+void SAP_XEP_DANH_SACH_NV_SuaOngNuoc_GIAM_DAN_THEO_LUONG(NhanVienSuaOngNuoc ds[], int n)
+{
+	for (int i = 0; i < n-1; i++)
+	{
+		for (int j = i+1; j < n; j++)
+		{
+			if (ds[i].Tinh_Tien_Luong() < ds[j].Tinh_Tien_Luong())
+			{
+				Hoan_Vi_Sua_Ong_Nuoc(ds[i], ds[j]);
+			}
+		}
+	}
+}
+// hàm sắp xếp danh sách Nhân viên giao hàng giảm dần theo lương
+void SAP_XEP_DANH_SACH_NV_GiaoHang_GIAM_DAN_THEO_LUONG(NhanVienGiaoHang ds[], int m)
+{
+	for (int i = 0; i < m - 1; i++)
+	{
+		for (int j = i + 1; j < m; j++)
+		{
+			if (ds[i].Tinh_Tien_Luong() < ds[j].Tinh_Tien_Luong())
+			{
+				Hoan_Vi_Giao_Hang(ds[i], ds[j]);
+			}
+		}
+	}
+}
+// hàm sắp xếp danh sách Nhân viên xe ôm CN giảm dần theo lương
+void SAP_XEP_DANH_SACH_NV_XeOmCN_GIAM_DAN_THEO_LUONG(NhanVienXeOmCongNghe ds[], int l)
+{
+	for (int i = 0; i < l - 1; i++)
+	{
+		for (int j = i + 1; j < l; j++)
+		{
+			if (ds[i].Tinh_Tien_Luong() < ds[j].Tinh_Tien_Luong())
+			{
+				Hoan_Vi_Xe_Om_CN(ds[i], ds[j]);
+			}
+		}
+	}
+}
+
+
+
 // thiết kế menu xử lý
 void Menu(NhanVienSuaOngNuoc ds_nv_suaongnuoc[], NhanVienGiaoHang ds_nv_giaohang[], NhanVienXeOmCongNghe ds_nv_xeomcn[], int n, int m, int l)
 {
@@ -346,11 +416,12 @@ void Menu(NhanVienSuaOngNuoc ds_nv_suaongnuoc[], NhanVienGiaoHang ds_nv_giaohang
 		cout << endl << "5. XUAT DANH SACH THONG TIN NHAN VIEN GIAO HANG";
 		cout << endl << "6. XUAT DANH SACH THONG TIN NHAN VIEN XE OM CONG NGHE";
 		cout << endl << "7. TONG TIEN LUONG CUA 3 LOAI NHAN VIEN";
+		cout << endl << "8. SAP XEP DANH SACH NHAN VIEN CAC LOAI GIAM DAN THEO LUONG";
 		cout << endl << "0. KET THUC";
 		cout << endl << "=====================ENDL=====================";
 		cout << endl << "NHAP LUA CHON: ";
 		cin >> luachon;
-		if (luachon<0||luachon>7)
+		if (luachon<0||luachon>8)
 		{
 			cout << "LUA CHON KHONG TON TAI, NHAP LAI: ";
 		}
@@ -386,10 +457,10 @@ void Menu(NhanVienSuaOngNuoc ds_nv_suaongnuoc[], NhanVienGiaoHang ds_nv_giaohang
 			cout << endl << "DANH SACH THONG TIN NHAN VIEN SUA ONG NUOC";
 			for (int i = 0; i < n; i++)
 			{
-				cout << endl << "THONG TIN NHAN VIEN SUA ONG NUOC THU " << i + 1 << ": ";
+				cout << endl << "THONG TIN NHAN VIEN SUA ONG NUOC THU " << i + 1 << ": " << endl;
 				ds_nv_suaongnuoc[i].Xuat();
 			}
-			cout << endl << "TONG TIEN LUONG: " << (size_t)TongTienLuongNVSON(ds_nv_suaongnuoc, n);
+			cout << endl << "TONG TIEN LUONG: " << (size_t)TongTienLuongNVSON(ds_nv_suaongnuoc, n) << endl;
 			system("pause");
 		}
 		else if (luachon == 5)
@@ -397,10 +468,10 @@ void Menu(NhanVienSuaOngNuoc ds_nv_suaongnuoc[], NhanVienGiaoHang ds_nv_giaohang
 			cout << endl << "DANH SACH THONG TIN NHAN VIEN GIAO HANG";
 			for (int i = 0; i < m; i++)
 			{
-				cout << endl << "THONG TIN NHAN VIEN GIAO HANG THU " << i + 1 << ": ";
+				cout << endl << "THONG TIN NHAN VIEN GIAO HANG THU " << i + 1 << ": " << endl;
 				ds_nv_giaohang[i].Xuat();
 			}
-			cout << endl << "TONG TIEN LUONG: " << (size_t)TongTienLuongNVGH(ds_nv_giaohang, m);
+			cout << endl << "TONG TIEN LUONG: " << (size_t)TongTienLuongNVGH(ds_nv_giaohang, m) << endl;
 			system("pause");
 		}
 		else if (luachon == 6)
@@ -408,10 +479,10 @@ void Menu(NhanVienSuaOngNuoc ds_nv_suaongnuoc[], NhanVienGiaoHang ds_nv_giaohang
 			cout << endl << "DANH SACH THONG TIN NHAN VIEN XE OM CONG NGHE";
 			for (int i = 0; i < l; i++)
 			{
-				cout << endl << "THONG TIN NHAN VIEN XE OM CONG NGHE THU " << i + 1 << ": ";
+				cout << endl << "THONG TIN NHAN VIEN XE OM CONG NGHE THU " << i + 1 << ": " << endl;
 				ds_nv_xeomcn[i].Xuat();
 			}
-			cout << endl << "TONG TIEN LUONG: " << (size_t)TongTienLuongNVXOCN(ds_nv_xeomcn, l);
+			cout << endl << "TONG TIEN LUONG: " << (size_t)TongTienLuongNVXOCN(ds_nv_xeomcn, l) << endl;
 			system("pause");
 		}
 		else if (luachon == 7)
@@ -420,6 +491,39 @@ void Menu(NhanVienSuaOngNuoc ds_nv_suaongnuoc[], NhanVienGiaoHang ds_nv_giaohang
 			cout << endl << "Tong tien cong ty can tra hang thang: " << (size_t)a;
 			cout << endl;
 			system("pause");
+		}
+		else if (luachon == 8)
+		{
+			// Sủa ống nước
+			cout << endl << "I.	DANH SACH THONG TIN NHAN VIEN SUA ONG NUOC GIAM DAN THEO LUONG" << endl;
+			SAP_XEP_DANH_SACH_NV_SuaOngNuoc_GIAM_DAN_THEO_LUONG(ds_nv_suaongnuoc, n);
+			for (int i = 0; i < n; i++)
+			{
+				cout << endl << "THONG TIN NHAN VIEN SUA ONG NUOC THU " << i + 1 << ": " << endl;
+				ds_nv_suaongnuoc[i].Xuat();
+			}
+			cout << endl << "TONG TIEN LUONG: " << (size_t)TongTienLuongNVSON(ds_nv_suaongnuoc, n) << endl;
+			// Giao Hàng
+			cout << endl << "II.	DANH SACH THONG TIN NHAN VIEN GIAO HANG GIAM DAN THEO LUONG" << endl;
+			SAP_XEP_DANH_SACH_NV_GiaoHang_GIAM_DAN_THEO_LUONG(ds_nv_giaohang, m);
+			for (int i = 0; i < m; i++)
+			{
+				cout << endl << "THONG TIN NHAN VIEN GIAO HANG THU " << i + 1 << ": " << endl;
+				ds_nv_giaohang[i].Xuat();
+			}
+			cout << endl << "TONG TIEN LUONG: " << (size_t)TongTienLuongNVGH(ds_nv_giaohang, m) << endl;
+			// Xe ôm công nghệ
+			cout << endl << "III.	DANH SACH THONG TIN NHAN VIEN XE OM CONG NGHE GIAM DAN THEO LUONG" << endl;
+			SAP_XEP_DANH_SACH_NV_XeOmCN_GIAM_DAN_THEO_LUONG(ds_nv_xeomcn, l);
+			for (int i = 0; i < l; i++)
+			{
+				cout << endl << "THONG TIN NHAN VIEN XE OM CONG NGHE THU " << i + 1 << ": " << endl;
+				ds_nv_xeomcn[i].Xuat();
+			}
+			cout << endl << "TONG TIEN LUONG: " << (size_t)TongTienLuongNVXOCN(ds_nv_xeomcn, l) << endl;
+
+			system("pause");
+
 		}
 		else if (luachon == 0)
 		{
