@@ -2,6 +2,8 @@
 using namespace std;
 #include<string>
 
+
+
 /* ======= KHAI BÁO CẤU TRÚC LỚP NHÂN VIÊN SỬA ỐNG NƯỚC =======*/
 class NhanVienSuaOngNuoc
 {
@@ -86,6 +88,7 @@ double NhanVienSuaOngNuoc::Tinh_Tien_Luong()
 {
 	return (size_t)so_h_sua * 50000;
 }
+
 // hàm tạo
 NhanVienSuaOngNuoc::NhanVienSuaOngNuoc()
 {
@@ -186,6 +189,7 @@ double NhanVienGiaoHang::Tinh_Tien_Luong()
 {
 	return (size_t)so_hang_giao * 33500;
 }
+
 // hàm tạo
 NhanVienGiaoHang::NhanVienGiaoHang()
 {
@@ -285,6 +289,7 @@ double NhanVienXeOmCongNghe::Tinh_Tien_Luong()
 {
 	return (size_t)so_km * 10000;
 }
+
 // hàm tạo
 NhanVienXeOmCongNghe::NhanVienXeOmCongNghe()
 {
@@ -295,6 +300,7 @@ NhanVienXeOmCongNghe::~NhanVienXeOmCongNghe()
 {
 
 }
+
 
 
 
@@ -333,6 +339,7 @@ double TongTienLuongNVXOCN(NhanVienXeOmCongNghe ds[], int l)
 
 
 
+
 // hàm hoán vị 2 đối tượng nv Sửa ống nước
 void Hoan_Vi_Sua_Ong_Nuoc(NhanVienSuaOngNuoc &x, NhanVienSuaOngNuoc &y)
 {
@@ -340,6 +347,7 @@ void Hoan_Vi_Sua_Ong_Nuoc(NhanVienSuaOngNuoc &x, NhanVienSuaOngNuoc &y)
 	x = y;
 	y = temp;
 }
+
 // hàm hoán vị 2 đối tượng nv Giao hàng
 void Hoan_Vi_Giao_Hang(NhanVienGiaoHang &x, NhanVienGiaoHang &y)
 {
@@ -347,6 +355,7 @@ void Hoan_Vi_Giao_Hang(NhanVienGiaoHang &x, NhanVienGiaoHang &y)
 	x = y;
 	y = temp;
 }
+
 // hàm hoán vị 2 đối tượng nv Xe ôm công nghệ
 void Hoan_Vi_Xe_Om_CN(NhanVienXeOmCongNghe &x, NhanVienXeOmCongNghe &y)
 {
@@ -354,6 +363,8 @@ void Hoan_Vi_Xe_Om_CN(NhanVienXeOmCongNghe &x, NhanVienXeOmCongNghe &y)
 	x = y;
 	y = temp;
 }
+
+
 
 
 // hàm sắp xếp danh sách Nhân viên sủa ống nước giảm dần theo lương
@@ -370,6 +381,7 @@ void SAP_XEP_DANH_SACH_NV_SuaOngNuoc_GIAM_DAN_THEO_LUONG(NhanVienSuaOngNuoc ds[]
 		}
 	}
 }
+
 // hàm sắp xếp danh sách Nhân viên giao hàng giảm dần theo lương
 void SAP_XEP_DANH_SACH_NV_GiaoHang_GIAM_DAN_THEO_LUONG(NhanVienGiaoHang ds[], int m)
 {
@@ -384,6 +396,7 @@ void SAP_XEP_DANH_SACH_NV_GiaoHang_GIAM_DAN_THEO_LUONG(NhanVienGiaoHang ds[], in
 		}
 	}
 }
+
 // hàm sắp xếp danh sách Nhân viên xe ôm CN giảm dần theo lương
 void SAP_XEP_DANH_SACH_NV_XeOmCN_GIAM_DAN_THEO_LUONG(NhanVienXeOmCongNghe ds[], int l)
 {
@@ -398,6 +411,7 @@ void SAP_XEP_DANH_SACH_NV_XeOmCN_GIAM_DAN_THEO_LUONG(NhanVienXeOmCongNghe ds[], 
 		}
 	}
 }
+
 
 
 
@@ -532,6 +546,7 @@ void Menu(NhanVienSuaOngNuoc ds_nv_suaongnuoc[], NhanVienGiaoHang ds_nv_giaohang
 		
 	}
 }
+
 
 
 
